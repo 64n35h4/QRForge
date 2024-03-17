@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+// }
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id @unique @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now()) @updatedAt
+  username   String
+  email      String
+  QR         QR[]
+}
+
+model QR {
+  id         String    @id @unique @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now()) @updatedAt
+  owner      User?     @relation(fields: [userId], references: [id])
+  label      String?
+  type       QR_TYPE?  @default(DYNAMIC)
+  uniqueID   String?   @unique @default(uuid())
+  url        String?
+  is_active  Boolean?  @default(true)
+  scans      Int?
+  userId     String?
+  bgColor    String?
+  fgColor    String?
+}
+
+enum QR_TYPE {
+  STATIC
+  DYNAMIC
+}
