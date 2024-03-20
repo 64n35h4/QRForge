@@ -26,11 +26,17 @@ export default function Page() {
     <Card>
       <Card.Header>Static QRs</Card.Header>
       <Card.Body>
-        <div className="mb-3 text-end">
-          <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
-            <FontAwesomeIcon icon={faPlus} fixedWidth />
-            Add new
-          </Button>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <div className="w-75">
+            The QR codes on this page are static,
+            the value is encoded directly on the QR code and CANNOT be changed later.
+          </div>
+          <div>
+            <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
+              <FontAwesomeIcon icon={faPlus} fixedWidth />
+              Add new
+            </Button>
+          </div>
         </div>
         {isLoading
           ? <Spinner />

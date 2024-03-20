@@ -15,7 +15,7 @@ const QRGen = (row: Partial<QR>) => {
   let text
 
   if (type === QR_TYPE.DYNAMIC) {
-    text = `${DASHBOARD}/read/?u=${uniqueID}`
+    text = `${DASHBOARD}/api/read/?u=${uniqueID}`
   } else {
     text = url
   }

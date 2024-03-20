@@ -52,5 +52,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/((?!read|favicon.ico).*)', '/:path*', '/login', '/register'],
+  matcher: ['/((?!api/read|favicon.ico).*)', '/:path*', '/login', '/register'],
 }

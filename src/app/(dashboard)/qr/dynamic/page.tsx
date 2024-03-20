@@ -26,11 +26,18 @@ export default function Page() {
     <Card>
       <Card.Header>Dynamic QRs</Card.Header>
       <Card.Body>
-        <div className="mb-3 text-end">
-          <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
-            <FontAwesomeIcon icon={faPlus} fixedWidth />
-            Add new
-          </Button>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <div className="w-75">
+            The QR codes on this page are dynamic,
+            all data pass via this site and you can print the QR code
+            and change the redirection at a later date.
+          </div>
+          <div>
+            <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
+              <FontAwesomeIcon icon={faPlus} fixedWidth />
+              Add new
+            </Button>
+          </div>
         </div>
         {isLoading
           ? <Spinner />

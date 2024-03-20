@@ -100,13 +100,9 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               </span>
               {getFormErrorMessage('url')}
             </div>
-            <div className="row g-0">
-
-              <div className="col-11">
-                Active
-              </div>
-
-              <span className="col-1">
+            <div className="row">
+              <div className="col-9"> Active </div>
+              <span className="col-3">
                 <InputSwitch
                   id="is_active"
                   name="is_active"
@@ -119,13 +115,9 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
                 />
               </span>
             </div>
-            <div className="row g-0">
-
-              <div className="col-11">
-                Background Color
-              </div>
-
-              <span className="col-1">
+            <div className="row">
+              <div className="col-10"> Background Color </div>
+              <span className="col-2">
                 <ColorPicker
                   id="bgColor"
                   name="bgColor"
@@ -137,13 +129,9 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
                 />
               </span>
             </div>
-            <div className="row g-0">
-
-              <div className="col-11">
-                Foreground Color
-              </div>
-
-              <span className="col-1">
+            <div className="row">
+              <div className="col-10"> Foreground Color </div>
+              <span className="col-2">
                 <ColorPicker
                   id="fgColor"
                   name="fgColor"
@@ -157,7 +145,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
             </div>
           </div>
           <div className="col mt-4">
-            <div className="h-100">
+            <div className="h-100 text-center">
               {
                 QRGen({
                   url: formik.values.url,
