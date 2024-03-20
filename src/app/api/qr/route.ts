@@ -41,6 +41,8 @@ export async function POST(request: Request) {
       url: data.url,
       scans: data.scans,
       is_active: data.is_active,
+      bgColor: data.bgColor,
+      fgColor: data.fgColor,
     },
   })
 

@@ -4,9 +4,9 @@ import { QR, QR_TYPE } from '@prisma/client'
 import { DASHBOARD } from './constants'
 
 // eslint-disable-next-line react/display-name
-const QRGen = (row: QR) => {
+const QRGen = (row: Partial<QR>) => {
   const {
-    url, uniqueID, type,
+    url, uniqueID, type, bgColor, fgColor, size,
   } = row
 
   if (!url) {
@@ -22,7 +22,13 @@ const QRGen = (row: QR) => {
 
   // TODO: improve settings
   return (
-    <QRCodeSVG value={text!} size={128} style={{ margin: '10px' }} />
+    <QRCodeSVG
+      value={text!}
+      size={size || 128}
+      style={{ margin: '10px' }}
+      bgColor={bgColor || '#fff'}
+      fgColor={fgColor || '#000'}
+    />
   )
 }
 

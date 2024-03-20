@@ -1,12 +1,13 @@
 import { Card, CardBody, CardHeader } from 'react-bootstrap'
 import QRForm from '@/components/QR/QRForm'
+import { QR_TYPE } from '@prisma/client'
 
 export default function Page() {
   return (
     <Card>
-      <CardHeader>Add new QR</CardHeader>
+      <CardHeader>Add new dynamic QR</CardHeader>
       <CardBody>
-        <QRForm />
+        <QRForm qr={{ type: QR_TYPE.DYNAMIC }} />
       </CardBody>
     </Card>
   )

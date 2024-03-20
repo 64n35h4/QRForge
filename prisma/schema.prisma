@@ -34,6 +34,7 @@ model QR {
   is_active  Boolean?  @default(true)
   scans      Int?
   userId     String?
+  size       Int?
   bgColor    String?
   fgColor    String?
 }
