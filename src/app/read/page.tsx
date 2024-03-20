@@ -20,8 +20,10 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
     },
     select: {
       url: true,
+      is_active: true,
     },
   })
+  if (!response?.is_active) return <div>The selected ID is not active</div>
 
   if (!response || !response.url) return new Response('Bad Request', { status: 400 })
   // TODO: handle isActive
