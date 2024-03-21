@@ -2,6 +2,7 @@
 
 import '@/styles/globals.scss'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { SessionProvider } from 'next-auth/react'
@@ -23,6 +24,7 @@ export default function RootLayout({
         <body>
           {children}
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </SessionProvider>
