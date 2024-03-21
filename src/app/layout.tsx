@@ -1,8 +1,7 @@
 'use client'
 
 import '@/styles/globals.scss'
-// Next.js allows you to import CSS directly in .js files.
-// It handles optimization and all the necessary Webpack configuration to make this work.
+import { Analytics } from '@vercel/analytics/react'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { SessionProvider } from 'next-auth/react'
@@ -21,11 +20,9 @@ export default function RootLayout({
   return (
     <SessionProvider>
       <html lang="en">
-        {/* <head>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossOrigin="anonymous" />
-        </head> */}
         <body>
           {children}
+          <Analytics />
         </body>
       </html>
     </SessionProvider>
