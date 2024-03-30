@@ -8,23 +8,22 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useRouter, usePathname } from 'next/navigation'
 import useSWR from 'swr'
 import { QR_TYPE, QR } from '@prisma/client'
-import { ACTIONTYPES, API_QR } from '@/lib/constants'
+import { ACTIONTYPES, API_QR, DYNAMIC_HEADLINE_TEXT } from '@/lib/constants'
 import { fetcher } from '@/lib/utils'
 
 export default function Page() {
   const router = useRouter()
   const pathname = usePathname()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, error, isLoading } = useSWR<Array<QR>>(
     { url: API_QR, params: { type: QR_TYPE.DYNAMIC } },
     fetcher,
   )
 
-  // TODO: handle Error
+  console.log({ data, error, isLoading })
   return (
     <Card>
-      <Card.Header>Dynamic QRs</Card.Header>
+      <Card.Header id="card-headline">{DYNAMIC_HEADLINE_TEXT}</Card.Header>
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="w-75">
@@ -33,14 +32,14 @@ export default function Page() {
             and change the redirection at a later date.
           </div>
           <div>
-            <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
+            <Button id="add-new-button" variant="success" onClick={() => router.push(`${pathname}/create`)}>
               <FontAwesomeIcon icon={faPlus} fixedWidth />
-              Add new
+              Add New
             </Button>
           </div>
         </div>
         {isLoading
-          ? <Spinner />
+          ? <Spinner id="loading-spinner" />
           : (
             <QRList
               data={data || []}
@@ -52,6 +51,9 @@ export default function Page() {
               actions={[ACTIONTYPES.DOWNLOAD, ACTIONTYPES.EDIT, ACTIONTYPES.DELETE]}
             />
           )}
+        {error ? (
+          <div className="error_data" id="error-section">There was an error retreiving data</div>
+        ) : null}
       </Card.Body>
     </Card>
   )

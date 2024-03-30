@@ -15,7 +15,7 @@ export default function LoginPage() {
             Welcome
           </h1>
         </div>
-        <div className="d-flex justify-content-center">
+        <div id="login-section" className="d-flex justify-content-center">
           <UserAuthForm />
         </div>
       </div>

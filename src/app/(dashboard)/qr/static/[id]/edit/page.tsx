@@ -1,43 +1,29 @@
-import { notFound } from 'next/navigation'
-import { Card, CardBody, CardHeader } from 'react-bootstrap'
+'use client'
+
+import {
+  Card, CardBody, CardHeader, Spinner,
+} from 'react-bootstrap'
 import QRForm from '@/components/QR/QRForm'
-import axios from 'axios'
 import { QR } from '@prisma/client'
 import { API_QR } from '@/lib/constants'
+import { fetcher } from '@/lib/utils'
+import useSWR from 'swr'
 
-const fetchQR = async (params: { id: string }): Promise<{ qr: QR }> => {
-  const idQuery = params.id
-
-  if (!idQuery) {
-    return notFound()
-  }
-
-  const id = Number(idQuery)
-
-  try {
-    const res = await axios.get(`${API_QR}/${id}`)
-    if (!res) {
-      return notFound()
-    }
-
-    const qr: QR = res.data
-
-    return {
-      qr,
-    }
-  } catch (error) {
-    return notFound()
-  }
-}
-
-export default async function Page({ params }: { params: { id: string } }) {
-  const { qr } = await fetchQR(params)
+export default function Page({ params }: { params: { id: string } }) {
+  const { id } = params
+  const { data, error, isLoading } = useSWR<QR>(
+    { url: `${API_QR}/${id}` },
+    fetcher,
+  )
 
   return (
-    <Card>
-      <CardHeader>Edit QR</CardHeader>
+    <Card id={`${data?.id}`}>
+      <CardHeader id="headline-section">Edit QR</CardHeader>
       <CardBody>
-        <QRForm qr={qr} />
+        {isLoading ? <Spinner id="spinner-section" /> : <QRForm qr={data} />}
+        {error ? (
+          <div className="error_data" id="error-section">There was an error retreiving data</div>
+        ) : null}
       </CardBody>
     </Card>
   )

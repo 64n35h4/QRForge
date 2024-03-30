@@ -1,11 +1,15 @@
 'use client'
 
-import '@/styles/globals.scss'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import { SessionProvider } from 'next-auth/react'
+import { ToastContainer } from 'react-toastify'
+
+import '@/styles/globals.scss'
+import 'react-toastify/dist/ReactToastify.css'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import 'primereact/resources/themes/lara-light-cyan/theme.css'
 
 // You change this configuration value to false so that the Font Awesome core SVG library
 // will not try and insert <style> elements into the <head> of the page.
@@ -19,14 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <SessionProvider>
           {children}
           <Analytics />
           <SpeedInsights />
-        </body>
-      </html>
-    </SessionProvider>
+          <ToastContainer />
+        </SessionProvider>
+      </body>
+    </html>
   )
 }

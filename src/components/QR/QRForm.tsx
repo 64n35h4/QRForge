@@ -42,6 +42,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
       return errors
     },
     onSubmit: (data) => {
+      console.log({ data, API_QR })
       if (data.uniqueID) {
         axios.put(`${API_QR}/${data.uniqueID}`, data).then(() => {
           router.back()
@@ -69,6 +70,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               <span className="p-float-label mt-4">
                 <InputText
                   id="label"
+                  data-testid="Label"
                   name="label"
                   onBlur={(e) => {
                     formik.setFieldValue('label', e.target.value)
@@ -86,6 +88,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               <span className="p-float-label mt-4">
                 <InputText
                   id="url"
+                  data-testid="Url"
                   name="url"
                   value={formik.values.url || ''}
                   onBlur={(e) => {
@@ -105,6 +108,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               <span className="col-3">
                 <InputSwitch
                   id="is_active"
+                  data-testid="is_active"
                   name="is_active"
                   inputId="is_active"
                   checked={formik.values.is_active || false}
@@ -120,6 +124,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               <span className="col-2">
                 <ColorPicker
                   id="bgColor"
+                  data-testid="bgColor"
                   name="bgColor"
                   value={formik.values.bgColor ?? '#000'}
                   className={classNames({ 'p-invalid': isFormFieldInvalid('bgColor') })}
@@ -134,6 +139,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
               <span className="col-2">
                 <ColorPicker
                   id="fgColor"
+                  data-testid="fgColor"
                   name="fgColor"
                   value={formik.values.fgColor ?? '#fff'}
                   className={classNames({ 'p-invalid': isFormFieldInvalid('fgColor') })}
@@ -159,7 +165,7 @@ export default function QRForm({ qr }: { qr?: Partial<QR> }) {
 
           </div>
         </div>
-        <Button type="submit" label="Submit" />
+        <Button type="submit" label="Submit" data-testid="submit" />
       </form>
     </div>
   )

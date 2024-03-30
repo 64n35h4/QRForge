@@ -12,3 +12,5 @@ export enum ACTIONTYPES {
   EDIT,
   DELETE,
 }
+
+export const DYNAMIC_HEADLINE_TEXT = 'Dynamic QRs'

@@ -10,7 +10,6 @@ import { fetcher } from '@/lib/utils'
 import useSWR from 'swr'
 
 export default function Page({ params }: { params: { id: string } }) {
-  // const { qr } = await fetchQR(params)
   const { id } = params
   const { data, error, isLoading } = useSWR<QR>(
     { url: `${API_QR}/${id}` },
@@ -19,9 +18,12 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <Card id={`${data?.id}`}>
-      <CardHeader>Edit QR</CardHeader>
+      <CardHeader id="headline-section">Edit QR</CardHeader>
       <CardBody>
-        {isLoading ? <Spinner /> : <QRForm qr={data} />}
+        {isLoading ? <Spinner id="spinner-section" /> : <QRForm qr={data} />}
+        {error ? (
+          <div className="error_data" id="error-section">There was an error retreiving data</div>
+        ) : null}
       </CardBody>
     </Card>
   )

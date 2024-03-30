@@ -15,7 +15,6 @@ export default function Page() {
   const router = useRouter()
   const pathname = usePathname()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, error, isLoading } = useSWR<Array<QR>>(
     { url: API_QR, params: { type: QR_TYPE.STATIC } },
     fetcher,
@@ -24,7 +23,7 @@ export default function Page() {
   // TODO: handle Error
   return (
     <Card>
-      <Card.Header>Static QRs</Card.Header>
+      <Card.Header id="card-headline">Static QRs</Card.Header>
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="w-75">
@@ -32,14 +31,14 @@ export default function Page() {
             the value is encoded directly on the QR code and CANNOT be changed later.
           </div>
           <div>
-            <Button variant="success" onClick={() => router.push(`${pathname}/create`)}>
+            <Button id="add-new-button" variant="success" onClick={() => router.push(`${pathname}/create`)}>
               <FontAwesomeIcon icon={faPlus} fixedWidth />
               Add new
             </Button>
           </div>
         </div>
         {isLoading
-          ? <Spinner />
+          ? <Spinner id="loading-spinner" />
           : (
             <QRList
               data={data || []}
@@ -49,6 +48,9 @@ export default function Page() {
               actions={[ACTIONTYPES.DELETE, ACTIONTYPES.DOWNLOAD]}
             />
           )}
+        {error ? (
+          <div className="error_data" id="error-section">There was an error retreiving data</div>
+        ) : null}
       </Card.Body>
     </Card>
   )

@@ -1,0 +1,28 @@
+export const mockData = [
+  {
+    created_at: '2024-03-19T18:57:29.421Z',
+    updated_at: '2024-03-20T19:22:13.757Z',
+    label: 'Google',
+    type: 'DYNAMIC',
+    uniqueID: '1234',
+    url: 'www.google.com',
+    is_active: true,
+    scans: 1,
+    size: null,
+    bgColor: '#000000',
+    fgColor: '#ff00ff',
+  },
+  {
+    created_at: '2024-03-19T18:59:48.849Z',
+    updated_at: '2024-03-20T22:02:45.995Z',
+    label: 'Google2',
+    type: 'DYNAMIC',
+    uniqueID: '4321',
+    url: 'www.google.com',
+    is_active: true,
+    scans: 15,
+    size: null,
+    bgColor: '#ffffff',
+    fgColor: '#000000',
+  },
+]
