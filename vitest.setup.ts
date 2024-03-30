@@ -2,26 +2,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { vi } from 'vitest'
 import '@testing-library/jest-dom'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
-
-// import '@/styles/globals.scss'
-// import 'react-toastify/dist/ReactToastify.css'
-// import '@fortawesome/fontawesome-svg-core/styles.css'
-// import 'primereact/resources/themes/lara-light-cyan/theme.css'
 
 vi.spyOn(console, 'error').mockImplementation(() => {})
 
-// vi.mock('next/navigation', async (importOriginal) => {
-//   const actual = await importOriginal() as any
-//   return {
-//     ...actual,
-//     useRouter: vi.fn(() => ({
-//       push: () => {},
-//     })),
-//
-//   }
-// })
 vi.mock('next/navigation', () => ({
   // eslint-disable-next-line global-require
   ...require('next-router-mock'),
@@ -48,7 +31,7 @@ vi.mock('next-auth/next', async (importOriginal) => {
 })
 
 vi.mock('swr')
-// vi.spyOn(axios, 'post').mockImplementation((url, data) => Promise.resolve({}))
+
 vi.mock('axios', async (importOriginal) => {
   const actual = await importOriginal() as any
   return {
