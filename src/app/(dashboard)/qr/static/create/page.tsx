@@ -5,7 +5,7 @@ import { QR_TYPE } from '@prisma/client'
 export default function Page() {
   return (
     <Card>
-      <CardHeader>Add new static QR</CardHeader>
+      <CardHeader id="headline-section">Add new static QR</CardHeader>
       <CardBody>
         <QRForm qr={{ type: QR_TYPE.STATIC }} />
       </CardBody>
